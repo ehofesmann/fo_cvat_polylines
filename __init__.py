@@ -92,9 +92,10 @@ def load_annotation(
     polylines_3d = {}
     for sample_polylines, metadata, group_id in zip(all_polylines, metadatas, group_ids):
         sample_polylines_3d = []
-        for p in sample_polylines.polylines:
-            polyline_3d = polyline_2d_to_3d(p, metadata, road_surface)
-            sample_polylines_3d.append(polyline_3d)
+        if sample_polylines is not None:
+            for p in sample_polylines.polylines:
+                polyline_3d = polyline_2d_to_3d(p, metadata, road_surface)
+                sample_polylines_3d.append(polyline_3d)
 
         polylines_3d[group_id] = fo.Polylines(polylines=sample_polylines_3d)
 
